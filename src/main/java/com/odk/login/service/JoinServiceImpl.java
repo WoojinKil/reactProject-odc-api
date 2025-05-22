@@ -1,0 +1,43 @@
+package com.odk.login.service;
+
+import java.security.SecureRandom;
+import java.util.Map;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Service;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class JoinServiceImpl implements JoinService {
+
+	@Autowired
+	private RedisTemplate<String, String> redisTemplate;
+	
+	@Override
+	public void sendEmailCode(Map<String, Object> map) {
+		String email = (String) map.get("email");
+		String code = generateAuthCode();
+		saveCodeToRedis(email, code);
+	}
+	public String generateAuthCode() {
+	    int length = 6;
+	    String chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	    StringBuilder sb = new StringBuilder();
+
+	    Random random = new SecureRandom();
+	    for (int i = 0; i < length; i++) {
+	        sb.append(chars.charAt(random.nextInt(chars.length())));
+	    }
+
+	    return sb.toString();
+	}
+	public void saveCodeToRedis(String email, String authCode) {
+	    String key = "emailAuth:" + email;
+	    redisTemplate.opsForValue().set(key, authCode, 5, TimeUnit.MINUTES);
+	}
+}

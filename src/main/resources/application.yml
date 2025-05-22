@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/odkdev
+    username: root
+    password: 7729
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    data:
+      host: localhost
+      port: 6379
+mybatis:
+  mapper-locations: classpath:com/odk/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    
+logging:
+  level:
+    org.springframework.security: DEBUG
