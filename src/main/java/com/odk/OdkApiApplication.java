@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.odk.inf.repository")
+@MapperScan("com.odk.*.repository")
 public class OdkApiApplication {
 
 	public static void main(String[] args) {

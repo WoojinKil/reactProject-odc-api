@@ -6,4 +6,6 @@ public interface JoinService {
 
 	void sendEmailCode(Map<String, Object> map);
 
+	String selectEmailDupCheck(Map<String, Object> map);
+
 }

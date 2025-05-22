@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import com.odk.login.repository.JoinMapper;
+
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -17,6 +19,19 @@ public class JoinServiceImpl implements JoinService {
 
 	@Autowired
 	private RedisTemplate<String, String> redisTemplate;
+	@Autowired
+	private JoinMapper joinMapper; 
+	
+	@Override
+	public String selectEmailDupCheck(Map<String, Object> map) {
+		String email = "";
+		email = (String)map.get("email");
+		String dupCheck = joinMapper.selectEmailDupCheck(email);
+		return dupCheck;
+		
+		
+	}
+	
 	
 	@Override
 	public void sendEmailCode(Map<String, Object> map) {
