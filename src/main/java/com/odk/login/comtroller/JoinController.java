@@ -26,11 +26,20 @@ public class JoinController {
 	
 	@PostMapping("/join/sendEmailCode")
 	public ResponseEntity<?> sendEmailCode(@RequestBody Map<String, Object> map) {
-	
-		System.out.println(map);
-		joinService.sendEmailCode(map);
-		
-		return ResponseEntity.ok("email success");
+        HashMap<Object, Object> resultMap = new HashMap<>();
+        String result = "";
+ 
+        try {
+			result = Const.BOOLEAN_SUCCESS;
+			joinService.sendEmailCode(map);
+			
+		} catch (Exception e) {
+			result = Const.BOOLEAN_FAIL;
+			e.printStackTrace();
+		}
+        
+        resultMap.put("result", result);
+        return ResponseEntity.ok(resultMap);
 		
 	}
 	

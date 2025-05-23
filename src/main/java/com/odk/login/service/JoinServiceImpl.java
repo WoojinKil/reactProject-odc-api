@@ -6,9 +6,11 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import com.odk.common.util.EmailUtils;
 import com.odk.login.repository.JoinMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -21,7 +23,11 @@ public class JoinServiceImpl implements JoinService {
 	private RedisTemplate<String, String> redisTemplate;
 	@Autowired
 	private JoinMapper joinMapper; 
-	
+	@Value("${app.views.url}")
+	private String boUrl;
+    @Autowired
+    private EmailUtils emailUtils;
+    
 	@Override
 	public String selectEmailDupCheck(Map<String, Object> map) {
 		String email = "";
@@ -38,6 +44,18 @@ public class JoinServiceImpl implements JoinService {
 		String email = (String) map.get("email");
 		String code = generateAuthCode();
 		saveCodeToRedis(email, code);
+		try {
+			String subject = "이메일 인증코드입니다.";
+			String url = boUrl;
+			String domain = "http://okc.com";
+			
+			String text = EmailUtils.getEmailVerificationContents("이메일 인증코드", code);
+			emailUtils.sendMimeMessage(email, subject, text);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 	public String generateAuthCode() {
 	    int length = 6;
