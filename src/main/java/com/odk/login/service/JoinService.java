@@ -8,4 +8,6 @@ public interface JoinService {
 
 	String selectEmailDupCheck(Map<String, Object> map);
 
+	String selectVerifyEmailCode(Map<String, Object> map);
+
 }

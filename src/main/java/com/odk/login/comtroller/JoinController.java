@@ -68,4 +68,25 @@ public class JoinController {
         resultMap.put("result", result);
         return ResponseEntity.ok(resultMap);
 	}
+	
+
+	@PostMapping("/join/selectVerifyEmailCode")
+	public ResponseEntity<?> selectVerifyEmailCode(@RequestBody Map<String, Object> map) {
+        HashMap<Object, Object> resultMap = new HashMap<>();
+        String result = "";
+        String currect = "";
+        try {
+			result = Const.BOOLEAN_SUCCESS;
+			currect = joinService.selectVerifyEmailCode(map);
+			
+		} catch (Exception e) {
+			result = Const.BOOLEAN_FAIL;
+			currect = "F";
+			e.printStackTrace();
+		}
+        resultMap.put("currectResult", currect);
+        resultMap.put("result", result);
+        return ResponseEntity.ok(resultMap);
+		
+	}
 }

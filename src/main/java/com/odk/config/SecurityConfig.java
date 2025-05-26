@@ -16,7 +16,7 @@ public class SecurityConfig {
 	@Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .cors(cors -> cors.disable())  // ❌ CORS 비활성화 (필요하면 활성화 가능)
+            .cors(cors -> cors.configurationSource(corsConfigurationSource()))  // ❌ CORS 비활성화 (필요하면 활성화 가능)
             .csrf(csrf -> csrf.disable())  // ✅ CSRF 보호 비활성화 (이거 안 하면 POST/PUT 요청 차단됨)
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/**").permitAll()  // ✅ API 요청 인증 없이 허용

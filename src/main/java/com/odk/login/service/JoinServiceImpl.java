@@ -27,7 +27,9 @@ public class JoinServiceImpl implements JoinService {
 	private String boUrl;
     @Autowired
     private EmailUtils emailUtils;
-    
+    @Value("${spring.redis.host}")
+    private String redisHost;
+
 	@Override
 	public String selectEmailDupCheck(Map<String, Object> map) {
 		String email = "";
@@ -43,6 +45,9 @@ public class JoinServiceImpl implements JoinService {
 	public void sendEmailCode(Map<String, Object> map) {
 		String email = (String) map.get("email");
 		String code = generateAuthCode();
+		System.out.println("code ::" + code);
+	    System.out.println("redisHost::: "+ redisHost);
+	    
 		saveCodeToRedis(email, code);
 		try {
 			String subject = "이메일 인증코드입니다.";
@@ -71,6 +76,23 @@ public class JoinServiceImpl implements JoinService {
 	}
 	public void saveCodeToRedis(String email, String authCode) {
 	    String key = "emailAuth:" + email;
+
 	    redisTemplate.opsForValue().set(key, authCode, 5, TimeUnit.MINUTES);
+	}
+	
+	@Override
+	public String selectVerifyEmailCode(Map<String, Object> map) {
+		String email = (String)map.get("email");
+		String key = "emailAuth:"+email;
+		String inputCode = (String)map.get("code");
+		String savedCode = redisTemplate.opsForValue().get(key);
+
+	    if (savedCode != null && savedCode.equalsIgnoreCase(inputCode)) {
+	        redisTemplate.delete(key); // 인증 성공하면 삭제
+	        return "S";
+	    } else {
+	    	return "F";
+	    }
+		
 	}
 }
