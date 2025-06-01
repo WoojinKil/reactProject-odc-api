@@ -14,5 +14,14 @@
 		
 	</select>
 	
-	
+	<select id="selectIdDupCheck" parameterType="String" resultType="String">
+		SELECT CASE WHEN COUNT(1) >= 1 THEN 'D'
+		            ELSE 'N'
+		        END AS DUP
+		 FROM ODC_BO_USR_M OBUM 
+		WHERE 1=1
+		  AND OBUM.USR_ID = #{usrId}
+		
+		
+	</select>
 </mapper>

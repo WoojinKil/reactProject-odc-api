@@ -11,6 +11,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import com.odk.common.util.EmailUtils;
+import com.odk.login.dto.UsrIdRequestDto;
 import com.odk.login.repository.JoinMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -27,7 +28,7 @@ public class JoinServiceImpl implements JoinService {
 	private String boUrl;
     @Autowired
     private EmailUtils emailUtils;
-    @Value("${spring.redis.host}")
+    @Value("${spring.redis.data.host}")
     private String redisHost;
 
 	@Override
@@ -94,5 +95,13 @@ public class JoinServiceImpl implements JoinService {
 	    	return "F";
 	    }
 		
+	}
+
+
+	@Override
+	public String selectIdDupCheck(UsrIdRequestDto requestDto) {
+		String usrId = requestDto.getUsrId();
+		String idDupCheck = joinMapper.selectIdDupCheck(usrId);
+		return idDupCheck;
 	}
 }

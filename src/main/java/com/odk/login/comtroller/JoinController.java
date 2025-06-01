@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.odk.common.util.Const;
+import com.odk.login.dto.UsrIdRequestDto;
 import com.odk.login.service.JoinService;
 
 /**
@@ -89,4 +90,32 @@ public class JoinController {
         return ResponseEntity.ok(resultMap);
 		
 	}
+	
+	
+	
+	/**
+	 * 아이디 중복체크
+	 * @param map
+	 * @return
+	 */
+	@PostMapping("/join/selectIdDupCheck")
+	public ResponseEntity<?> selectIdDupCheck(@RequestBody UsrIdRequestDto requestDto) {
+        HashMap<Object, Object> resultMap = new HashMap<>();
+        String result = "";
+        String idDupCheck = "";
+        try {
+			result = Const.BOOLEAN_SUCCESS;
+			idDupCheck = joinService.selectIdDupCheck(requestDto);
+			
+		} catch (Exception e) {
+			result = Const.BOOLEAN_FAIL;
+			e.printStackTrace();
+		}
+        
+        resultMap.put("idDupCheck", idDupCheck);
+        resultMap.put("result", result);
+        return ResponseEntity.ok(resultMap);
+	}
+	
+
 }

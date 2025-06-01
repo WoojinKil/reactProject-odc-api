@@ -7,4 +7,6 @@ public interface JoinMapper {
 
 	String selectEmailDupCheck(String email);
 
+	String selectIdDupCheck(String usrId);
+
 }
