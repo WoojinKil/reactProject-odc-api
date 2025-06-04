@@ -15,6 +15,8 @@ import com.odc.login.dto.BoUsrRequestDto;
 import com.odc.login.dto.UsrIdRequestDto;
 import com.odc.login.service.JoinService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -24,11 +26,13 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/api")
 @Slf4j
+@Tag(name = "회원가입 API", description = "회원가입 관련 기능")
 public class JoinController {
 
 	@Autowired
 	JoinService joinService;
 	
+	@Operation(summary = "이메일 송신", description = "대상 이메일을 송신합니다.")
 	@PostMapping("/join/sendEmailCode")
 	public ResponseEntity<?> sendEmailCode(@RequestBody Map<String, Object> map) {
         HashMap<Object, Object> resultMap = new HashMap<>();
@@ -55,6 +59,7 @@ public class JoinController {
 	 * @param map
 	 * @return
 	 */
+	@Operation(summary = "이메일 중복체크", description = "이메일을 중복체크 합니다.")
 	@PostMapping("/join/selectEmailDupCheck")
 	public ResponseEntity<?> selectEmailDupCheck(@RequestBody Map<String, Object> map) {
         HashMap<Object, Object> resultMap = new HashMap<>();
@@ -75,6 +80,7 @@ public class JoinController {
 	}
 	
 
+	@Operation(summary = "인증메일 코드 비교", description = "인증메일로 발급된 코드를 비교합니다.")
 	@PostMapping("/join/selectVerifyEmailCode")
 	public ResponseEntity<?> selectVerifyEmailCode(@RequestBody Map<String, Object> map) {
         HashMap<Object, Object> resultMap = new HashMap<>();
@@ -102,6 +108,7 @@ public class JoinController {
 	 * @param map
 	 * @return
 	 */
+	@Operation(summary = "아이디 중복체크", description = "아이디를 중복체크 합니다.")
 	@PostMapping("/join/selectIdDupCheck")
 	public ResponseEntity<?> selectIdDupCheck(@RequestBody UsrIdRequestDto requestDto) {
         HashMap<Object, Object> resultMap = new HashMap<>();
@@ -125,6 +132,7 @@ public class JoinController {
 	 * @param map
 	 * @return
 	 */
+	@Operation(summary = "회원가입", description = "BO 회원을 신규 등록합니다.")
 	@PostMapping("/join/saveUser")
 	public ResponseEntity<?> saveUser(@RequestBody BoUsrRequestDto requestDto) {
         HashMap<Object, Object> resultMap = new HashMap<>();

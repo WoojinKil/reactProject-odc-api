@@ -17,13 +17,17 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))  // ❌ CORS 비활성화 (필요하면 활성화 가능)
-            .csrf(csrf -> csrf.disable())  // ✅ CSRF 보호 비활성화 (이거 안 하면 POST/PUT 요청 차단됨)
+            .csrf(csrf -> csrf.disable())  //  CSRF 보호 비활성화 (이거 안 하면 POST/PUT 요청 차단됨)
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/**").permitAll()  // ✅ API 요청 인증 없이 허용
-                .anyRequest().authenticated()  // ✅ 그 외 요청은 인증 필요
+                .requestMatchers("/api/**",
+                		"/swagger-ui/**", 
+                        "/v3/api-docs/**", 
+                        "/swagger-resources/**", 
+                        "/webjars/**").permitAll()  //  API 요청 인증 없이 허용
+                .anyRequest().authenticated()  //  그 외 요청은 인증 필요
             )
-            .formLogin(login -> login.disable())  // ✅ 로그인 폼 비활성화
-            .httpBasic(basic -> basic.disable());  // ✅ HTTP 기본 인증 비활성화
+            .formLogin(login -> login.disable())  // 로그인 폼 비활성화
+            .httpBasic(basic -> basic.disable());  // HTTP 기본 인증 비활성화
 
         return http.build();
     }
