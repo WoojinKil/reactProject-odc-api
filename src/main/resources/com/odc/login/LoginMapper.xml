@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.odc.login.repository.LoginMapper">
+	<select id="selectByLgnId" parameterType="com.odc.login.dto.LoginRequestDto"
+            resultType="com.odc.login.dto.BoUsrDto">
+		SELECT CSTM_ID
+		     , TRGT_SEQ
+		     , USR_ID
+		     , LGN_ID
+		     , PWD
+		     , USR_NM
+		     , EMAIL
+		     , PHONE, ADDRESS, ROLE_TP, USE_YN, ACTV_YN, DLT_YN, CRT_DTTM, CRTR_ID, UPD_DTTM, UPDR_ID
+		FROM ODC_BO_USR_M
+		WHERE 1=1 
+		  AND CSTM_ID='LBMP001'
+		  AND TRGT_SEQ=1 
+		  AND LGN_ID = #{lgnId}
+		;
+		
+	</select>
+</mapper>

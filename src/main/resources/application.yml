@@ -5,7 +5,7 @@ spring:
 
 
   datasource:
-    url: jdbc:mysql://localhost:3306/odcdev
+    url: jdbc:mysql://localhost:3306/odcdev?serverTimezone=Asia/Seoul
     username: root
     password: 7729
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -32,13 +32,15 @@ mybatis:
   mapper-locations: classpath:com/odc/**/*.xml
   configuration:
     map-underscore-to-camel-case: true
-    
+   # mapUnderscoreToCamelCase: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  # typeAliasesPackage: com.odc.**.dto
 logging:
   level:
-    root: INFO
-    org.springframework.web: INFO
-    org.mybatis: INFO
-    com.odc: INFO
+    root: DEBUG
+    org.springframework.web: DEBUG
+    org.mybatis: DEBUG
+    com.odc: DEBUG
 app:
   views:
     url: http://localhost:8080

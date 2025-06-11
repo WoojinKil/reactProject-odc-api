@@ -2,11 +2,11 @@ package com.odc.inf.repository;
 
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
+import org.apache.ibatis.annotations.Mapper;
 
 import com.odc.inf.dto.GameDto;
 
-@Repository
+@Mapper
 public interface GameMapper {
 
 	List<GameDto> selectGameList(GameDto gameParam);

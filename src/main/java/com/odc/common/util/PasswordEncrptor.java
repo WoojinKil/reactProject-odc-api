@@ -31,5 +31,8 @@ public class PasswordEncrptor {
             return null;
         }
     }
-
+    public static boolean matches(String rawPassword, String encryptedPassword) {
+        String encryptedRaw = encryptSha256(rawPassword);
+        return encryptedRaw != null && encryptedRaw.equals(encryptedPassword);
+    }
 }

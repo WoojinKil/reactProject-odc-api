@@ -9,7 +9,8 @@
     	     , GME_CD
     	     , KR_GME_NM
     	     , EN_GME_NM
-    	     , LNG, PRD_CD
+    	     , LNG
+    	     , PRD_CD
     	     , DSTBTR_CD
     	     , GME_CMNT
     	     , FRNT_YN

@@ -1,5 +1,8 @@
 package com.odc.inf.dto;
 
+import lombok.Data;
+
+@Data
 public class GameDto {
 
 	private String cstmId          ;              //고객사아이디
@@ -19,102 +22,7 @@ public class GameDto {
 	private String updDttm         ;              //수정일자
 	private String updrId          ;              //수정자ID
 	
-	public String getCstmId() {
-		return cstmId;
-	}
-	public void setCstmId(String cstmId) {
-		this.cstmId = cstmId;
-	}
-	public String getTrgtSeq() {
-		return trgtSeq;
-	}
-	public void setTrgtSeq(String trgtSeq) {
-		this.trgtSeq = trgtSeq;
-	}
-	public String getGmeCd() {
-		return gmeCd;
-	}
-	public void setGmeCd(String gmeCd) {
-		this.gmeCd = gmeCd;
-	}
-	public String getKrGmeNm() {
-		return krGmeNm;
-	}
-	public void setKrGmeNm(String krGmeNm) {
-		this.krGmeNm = krGmeNm;
-	}
-	public String getEnGmeNm() {
-		return enGmeNm;
-	}
-	public void setEnGmeNm(String enGmeNm) {
-		this.enGmeNm = enGmeNm;
-	}
-	public String getLng() {
-		return lng;
-	}
-	public void setLng(String lng) {
-		this.lng = lng;
-	}
-	public String getPrdCd() {
-		return prdCd;
-	}
-	public void setPrdCd(String prdCd) {
-		this.prdCd = prdCd;
-	}
-	public String getDstbtrCd() {
-		return dstbtrCd;
-	}
-	public void setDstbtrCd(String dstbtrCd) {
-		this.dstbtrCd = dstbtrCd;
-	}
-	public String getGmeCmnt() {
-		return gmeCmnt;
-	}
-	public void setGmeCmnt(String gmeCmnt) {
-		this.gmeCmnt = gmeCmnt;
-	}
-	public String getFrntYn() {
-		return frntYn;
-	}
-	public void setFrntYn(String frntYn) {
-		this.frntYn = frntYn;
-	}
-	public String getUseYn() {
-		return useYn;
-	}
-	public void setUseYn(String useYn) {
-		this.useYn = useYn;
-	}
-	public String getDltYn() {
-		return dltYn;
-	}
-	public void setDltYn(String dltYn) {
-		this.dltYn = dltYn;
-	}
-	public String getCrtDttm() {
-		return crtDttm;
-	}
-	public void setCrtDttm(String crtDttm) {
-		this.crtDttm = crtDttm;
-	}
-	public String getCrtrId() {
-		return crtrId;
-	}
-	public void setCrtrId(String crtrId) {
-		this.crtrId = crtrId;
-	}
-	public String getUpdDttm() {
-		return updDttm;
-	}
-	public void setUpdDttm(String updDttm) {
-		this.updDttm = updDttm;
-	}
-	public String getUpdrId() {
-		return updrId;
-	}
-	public void setUpdrId(String updrId) {
-		this.updrId = updrId;
-	}
+
 	
 	
 	
