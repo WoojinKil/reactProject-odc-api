@@ -24,7 +24,6 @@ public class GameController {
 	private GameService gameService;
 	
 	@PostMapping("/game/selectGameList")
-    //public List<GameDto> selectGameList(@RequestBody GameDto gameParam) {
 	public ResponseEntity<?> selectGameList(HttpServletRequest request, @RequestBody GameDto gameParam) {
 		String header = request.getHeader("Authorization");
 	    String userId = (String) request.getAttribute("userId");

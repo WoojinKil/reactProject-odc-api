@@ -21,6 +21,17 @@
     	     , UPD_DTTM
     	     , UPDR_ID
          FROM ODC_GME_M
+        WHERE 1=1
+          <if test="krGmeNm != null and krGmeNm != ''">
+          AND (GME_CD LIKE CONCAT('%', #{krGmeNm}, '%')
+      OR KR_GME_NM LIKE CONCAT('%', #{krGmeNm}, '%')
+              )
+          </if>
+          <if test="useYn != null and useYn != ''">
+		  AND USE_YN = #{useYn}	  
+		  </if>
+          AND DLT_YN = 'N'
+        
 
     </select>
 </mapper>
