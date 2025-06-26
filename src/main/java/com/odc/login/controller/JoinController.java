@@ -1,4 +1,4 @@
-package com.odc.login.comtroller;
+package com.odc.login.controller;
 
 import java.util.HashMap;
 import java.util.Map;
