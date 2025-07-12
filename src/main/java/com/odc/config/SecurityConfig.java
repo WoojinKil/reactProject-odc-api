@@ -19,7 +19,7 @@ public class SecurityConfig {
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))  // ❌ CORS 비활성화 (필요하면 활성화 가능)
             .csrf(csrf -> csrf.disable())  //  CSRF 보호 비활성화 (이거 안 하면 POST/PUT 요청 차단됨)
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/**",
+                .requestMatchers("/api/**","/kafka/**",
                 		"/swagger-ui/**", 
                         "/v3/api-docs/**", 
                         "/swagger-resources/**", 

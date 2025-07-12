@@ -35,7 +35,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.4'
 	testImplementation 'com.h2database:h2'
-	
+	implementation 'org.springframework.kafka:spring-kafka'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     // Redis 사용을 위한 의존성
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'

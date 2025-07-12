@@ -28,6 +28,18 @@ spring:
           auth: true
           starttls:
             enable: true
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: my-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties:
+        spring.json.encoding: UTF-8
 mybatis:
   mapper-locations: classpath:com/odc/**/*.xml
   configuration:
@@ -37,10 +49,10 @@ mybatis:
   # typeAliasesPackage: com.odc.**.dto
 logging:
   level:
-    root: DEBUG
-    org.springframework.web: DEBUG
-    org.mybatis: DEBUG
-    com.odc: DEBUG
+    root: INFO
+    org.springframework.web: INFO
+    org.mybatis: INFO
+    com.odc: INFO
 app:
   views:
     url: http://localhost:8080
